@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ping-job
+spec:
+  template:
+    metadata:
+      name: ping-job
+    spec:
+      containers:
+      - name: ping
+        image: alpine
+        command: ["/bin/ping", "-c", "50", "8.8.8.8"]
+      restartPolicy: Never
