@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-pod
+spec:
+  restartPolicy: Always
+  containers:
+    - name: debug-container
+      image: jhansen/k8s-debugger:latest
+      imagePullPolicy: Always
+      command: [ "/bin/bash", "-c", "sleep 9000"]

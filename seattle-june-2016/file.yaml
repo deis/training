@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: git-vol-pod
+spec:
+  restartPolicy: Always
+  containers:
+    - name: debug-container
+      image: jhansen/k8s-debugger:latest
+      imagePullPolicy: Always
+      command: [ "/bin/bash", "-c", "sleep 9000"]
+      volumeMounts:
+        - name: git-volume
+          readOnly: true
+          mountPath: /data/basic-site
+  volumes:
+    - name: git-volume
+      gitRepo:
+        repository: "https://github.com/slack/basic-site"
+        revision: "55e3f3e22e17d8140533facf9c40dfea306c5641"
+
