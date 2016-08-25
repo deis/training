@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-cm
+spec:
+  restartPolicy: Always
+  containers:
+    - name: debug-container
+      image: alpine
+      imagePullPolicy: Always
+      command: [ "/bin/bash", "-c", "sleep 9000"]
+      volumeMounts:
+        - name: config-volume
+          mountPath: /var/www/wp-config.php
+  volumes:
+    - name: config-volume
+      configMap:
+        name: wordpress-config
